@@ -7,6 +7,6 @@
 <title>家計簿 -一覧- </title>
 </head>
 <body>
-aaaa
+
 </body>
 </html>
