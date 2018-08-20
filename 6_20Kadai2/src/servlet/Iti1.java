@@ -2,6 +2,7 @@ package servlet;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,17 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dao.ShisyutuDao;
+import dto.Shisyutu;
+
 /**
  * Servlet implementation class SearchServlet
  */
 @WebServlet("/Kakei1")
-public class Iti extends HttpServlet {
+public class Iti1 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Iti() {
+    public Iti1() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,7 +33,12 @@ public class Iti extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String view = "/WEB-INF/view/Main.jsp";
+
+		request.setCharacterEncoding("UTF-8");
+		ArrayList<Shisyutu> result = ShisyutuDao.shisyutu();
+		request.setAttribute("shisyutu", result);
+
+		String view = "/WEB-INF/view/Kakei1.jsp";
 		RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 		dispatcher.forward(request, response);
 	}

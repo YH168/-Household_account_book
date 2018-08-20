@@ -1,6 +1,6 @@
 package dto;
 
-public class Shisyutu {
+public class Shunyu {
 	private int id;
 	private String name;
 	private int kin;
@@ -8,11 +8,11 @@ public class Shisyutu {
 	private int mon;
 	private int day;
 
-	public Shisyutu(){
+	public Shunyu(){
 
 	}
 
-	public Shisyutu(int id , String name, int kin, int year, int mon, int day){
+	public Shunyu(int id , String name, int kin, int year, int mon, int day){
 		this.id = id;
 		this.name = name;
 		this.kin = kin;

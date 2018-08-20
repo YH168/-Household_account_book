@@ -7,15 +7,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import dto.Shisyutu;
-public class ShisyutuDao {
+import dto.Shunyu;
+public class ShunyuDao {
 
 	//引数のIDに一致するレコードをemployeeテーブルから1件取得する。
-	public static ArrayList<Shisyutu> shisyutu(){
+	public static ArrayList<Shunyu> shunyu(){
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<Shisyutu> result = new ArrayList<Shisyutu>();
+		ArrayList<Shunyu> result = new ArrayList<Shunyu>();
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -25,7 +25,7 @@ public class ShisyutuDao {
 					"root",
 					"0872");
 
-			String sql = "SELECT * FROM shisyutu;";
+			String sql = "SELECT * FROM shunyu;";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 
@@ -36,7 +36,7 @@ public class ShisyutuDao {
 				int year = rs.getInt("year");
 				int mon = rs.getInt("mon");
 				int day = rs.getInt("day");
-				result.add(new Shisyutu(id, name , kin, year, mon, day));
+				result.add(new Shunyu(id, name , kin, year, mon, day));
 			}
 
 		} catch (ClassNotFoundException e) {

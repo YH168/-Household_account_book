@@ -3,41 +3,41 @@ package dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
-import dto.Shisyutu;
-public class ShisyutuDao {
+import dto.Touroku;
+
+public class Touroku2Dao {
 
 	//引数のIDに一致するレコードをemployeeテーブルから1件取得する。
-	public static ArrayList<Shisyutu> shisyutu(){
+	public static Touroku setDao(int id , String name, int kin, int year, int mon, int day){
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		ArrayList<Shisyutu> result = new ArrayList<Shisyutu>();
+		int rs = 0;
+		Touroku result = null;
 
 		try {
+			// ②JDBCドライバをロードする
 			Class.forName("com.mysql.jdbc.Driver");
 
+			// ③DBMSとの接続を確立する
 			con = DriverManager.getConnection(
 					"jdbc:mysql://localhost:3306/kakeibo?useSSL=false",
 					"root",
 					"0872");
-
-			String sql = "SELECT * FROM shisyutu;";
+			// ④SQL文を作成する
+			String sql = "INSERT INTO shunyu VALUES(?,?,?,?,?,?);";
+			// ⑤SQL文を実行するための準備を行う
 			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+			pstmt.setInt(1,id);
+			pstmt.setString(2,name);
+			pstmt.setInt(3,kin);
+			pstmt.setInt(4,year);
+			pstmt.setInt(5,mon);
+			pstmt.setInt(6,day);
 
-			while(rs.next()){
-				int id = rs.getInt("id");
-				String name = rs.getString("name");
-				int kin = rs.getInt("kin");
-				int year = rs.getInt("year");
-				int mon = rs.getInt("mon");
-				int day = rs.getInt("day");
-				result.add(new Shisyutu(id, name , kin, year, mon, day));
-			}
+			// ⑥SQL文を実行してDBMSから結果を受信する
+			rs = pstmt.executeUpdate();
 
 		} catch (ClassNotFoundException e) {
 			System.out.println("JDBCドライバが見つかりません。");
@@ -46,15 +46,7 @@ public class ShisyutuDao {
 			System.out.println("DBアクセス時にエラーが発生しました。");
 			e.printStackTrace();
 		} finally {
-
-			try {
-				if (rs != null) {
-					rs.close();
-				}
-			} catch (SQLException e) {
-				System.out.println("DBアクセス時にエラーが発生しました。");
-				e.printStackTrace();
-			}
+			// ⑧DBMSから切断する
 			try {
 				if (pstmt != null) {
 					pstmt.close();
