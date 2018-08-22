@@ -29,6 +29,7 @@
 		<%
 		@SuppressWarnings("unchecked")
 		ArrayList<Shunyu> shunyu= (ArrayList<Shunyu>) request.getAttribute("shunyu");
+		int n= 0;
 		for(Shunyu Shu : shunyu){
 		%>
 		<tr>
@@ -39,7 +40,8 @@
 			<td><%=Shu.getMon()%></td>
 			<td><%=Shu.getDay()%></td>
 		</tr>
-		<%} %>
+		<%n += Shu.getKin();} %>
 	</table>
+	合計<%=n%>円
 </body>
 </html>

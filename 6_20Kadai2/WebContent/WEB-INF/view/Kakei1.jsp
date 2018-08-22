@@ -29,6 +29,7 @@
 		<%
 		@SuppressWarnings("unchecked")
 		ArrayList<Shisyutu> shisyutu = (ArrayList<Shisyutu>) request.getAttribute("shisyutu");
+		int n= 0;
 		for(Shisyutu Shi : shisyutu){
 		%>
 		<tr>
@@ -39,7 +40,8 @@
 			<td><%=Shi.getMon()%></td>
 			<td><%=Shi.getDay()%></td>
 		</tr>
-		<%} %>
+		<% n += Shi.getKin();} %>
 	</table>
+	合計<%=n%>円
 </body>
 </html>
