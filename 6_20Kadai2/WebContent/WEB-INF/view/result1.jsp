@@ -9,6 +9,7 @@
 </head>
 <body>
 <p>登録完了</p>
+<a href="./top1" class="btn">もう一度登録</a>
 <a href="./Kakei1" class="btn">支出一覧へ</a>
 </body>
 </html>
